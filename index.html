@@ -18,6 +18,9 @@ fetch('words-freq.txt')
     // Split newlines
     let words = data.split('\n').filter(word => word.length>0);
 
+    // Use only top words (for frequency-sorted dicts)
+    words = words.slice(0, Math.floor(words.length * 0.2)); // EASY FACTOR!
+
     // Generate table
     let table = generateTable(words, 10, 4);
     document.body.appendChild(table);
