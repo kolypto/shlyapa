@@ -1,3 +1,5 @@
+""" Generate words-freq.txt from multiple sources """
+
 import re
 import csv
 import itertools
