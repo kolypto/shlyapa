@@ -1,4 +1,4 @@
-<html
+<html lang="ru">
 <head>
 </head>
 <body>
@@ -12,17 +12,17 @@
 // $ python3 -m http.server
 
 // Load words from the server
-fetch('words-freq.txt')
+fetch('words-freq-35000.txt')
   .then(response => response.text())
   .then((data) => {
     // Split newlines
     let words = data.split('\n').filter(word => word.length>0);
 
     // Use only top words (for frequency-sorted dicts)
-    words = words.slice(0, Math.floor(words.length * 0.2)); // EASY FACTOR!
+    // words = words.slice(0, Math.floor(words.length * 0.5)); // EASY FACTOR!
 
     // Generate table
-    let table = generateTable(words, 10, 4);
+    let table = generateTable(words, 12, 4);
     document.body.appendChild(table);
   });
 
@@ -56,7 +56,8 @@ function generateTable(words, rows, cols){
 <style>
 table {
   /* full page */
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
 
   /* cells with equal width */
   table-layout: fixed;
@@ -71,6 +72,12 @@ table {
 }
 table td {
   border: 1px solid #000;
+
+  /* nice looking */
+  padding: .5em 1em;
+
+  /* long words */
+  hyphens: auto;
 }
 </style>
 
