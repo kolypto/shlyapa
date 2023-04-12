@@ -38,7 +38,10 @@ def read_35000rus() -> tuple[str, float]:
     return (
         (word, float(freq))
         for n, freq, word, type_ in _iter_csv("35000rus.csv", delim=',', quote='"')
-        if type_ == 'noun'
+        if (
+            type_ == 'noun' and   # only nouns
+            word not in {'1', '0'}  # exclude strange words
+        )
     )
 
 def read_rus_freq_dict_1920_2019() -> tuple[str, float]:
